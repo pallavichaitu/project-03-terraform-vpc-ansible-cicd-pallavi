@@ -1,0 +1,17 @@
+---
+- hosts:
+  become: yes
+  tasks:
+    - name: install apache
+      yum:
+        name: httpd
+        state: present
+    - name: start apache
+      service: 
+        name: httpd
+        state: started
+        enabled: yes
+    - name: Deply web page
+      copy:
+        content: "<h1> Terraform + Ansible + GitHub actions </h1>"
+        dest: /var/www/html/index.html
